@@ -1,7 +1,15 @@
-import { SchemaTypes, Document, Schema, model } from "mongoose";
+import { Schema, Document, model } from "mongoose";
 import bcrypt from "bcrypt";
+export interface IPost extends Document {
+  title: string;
+  url: string;
+  content: string;
+  image: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
-const postSchema = new Schema({
+const postSchema = new Schema<IPost>({
   title: { type: String, required: true },
   url: { type: String, required: true, unique: true, lowercase: true },
   content: { type: String, required: true },
@@ -9,4 +17,4 @@ const postSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
   updatedAt: Date,
 });
-export default model("Post", postSchema);
+export default model<IPost>("Post", postSchema);
