@@ -1,5 +1,6 @@
 import { Schema, Document, model } from "mongoose";
 import bcrypt from "bcrypt";
+
 export interface IPost extends Document {
   title: string;
   url: string;
